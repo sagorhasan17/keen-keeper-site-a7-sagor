@@ -4,6 +4,7 @@ import HomePage from "../pages/home/Home";
 import NotFound from "../pages/notFound/NotFound";
 import StatsPage from "../pages/statsPage/Stats";
 import TimeLinePage from "../pages/timeLinePage/TimeLine";
+import FriendDetails from "./../components/pageComponents/friendsSection/FriendDetails";
 
 export const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: HomePage,
+      },
+      {
+        path: "/friends/:friendId",
+        Component: FriendDetails,
       },
       {
         path: "/timeline",
