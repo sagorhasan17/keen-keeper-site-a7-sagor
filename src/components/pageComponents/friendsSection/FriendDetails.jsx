@@ -15,7 +15,7 @@ const FriendDetails = () => {
   const { handleAddTimeLine } = useContext(FriendContext);
 
   return (
-    <section className="bg-gray-100 min-h-screen p-4 font-sans">
+    <section className="bg-gray-100 min-h-screen p-4">
       <div className="max-w-7/12 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 font-geist pt-26">
         {/* profile */}
         <div className="bg-white rounded-2xl shadow p-6 text-center space-y-3">
@@ -72,7 +72,6 @@ const FriendDetails = () => {
 
         {/* RIGHT CONTENT */}
         <div className="lg:col-span-2 space-y-6">
-          {/* TOP STATS */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="bg-white rounded-xl shadow p-5 text-center">
               <h3 className="text-3xl font-bold text-[#244d3f]">
@@ -114,7 +113,7 @@ const FriendDetails = () => {
             </button>
           </div>
 
-          {/* QUICK CHECK-IN */}
+          {/* QUICK section*/}
           <div className="bg-white rounded-xl shadow p-5">
             <h3 className="mb-4 font-medium">Quick Check-In</h3>
 

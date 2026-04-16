@@ -6,8 +6,12 @@ import FriendContext from "../../context/FriendContext";
 
 const TimeLinePage = () => {
   const friendContext = useContext(FriendContext);
-
   const { addTimeLine } = friendContext;
+  if (!addTimeLine || addTimeLine.length === 0) {
+    return (
+      <div className="text-center py-20 text-gray-500">No time line data available</div>
+    );
+  }
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
