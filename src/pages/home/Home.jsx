@@ -15,6 +15,8 @@ const HomePage = () => {
       <Suspense fallback={<Loader></Loader>}>
         <Friends friendsPromise={friendsPromise}></Friends>
       </Suspense>
+
+      
     </>
   );
 };

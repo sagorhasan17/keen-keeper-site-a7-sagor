@@ -1,14 +1,18 @@
-import { use } from "react";
+import { use, useContext } from "react";
 import { FaPhoneAlt, FaVideo } from "react-icons/fa";
 import { HiOutlineChatBubbleLeft } from "react-icons/hi2";
 import { useParams } from "react-router";
+import FriendContext from "../../../context/FriendContext";
 
 const friendsPromise = fetch("/friends.json").then((res) => res.json());
+
 const FriendDetails = () => {
   const { friendId } = useParams();
-
   const friends = use(friendsPromise);
   const selectedFriend = friends.find((f) => f.id === parseInt(friendId));
+
+  //destructure context
+  const { handleAddTimeLine } = useContext(FriendContext);
 
   return (
     <section className="bg-gray-100 min-h-screen p-4 font-sans">
@@ -21,6 +25,7 @@ const FriendDetails = () => {
             className="w-20 h-20 rounded-full mx-auto"
           />
           <h2 className="text-xl font-semibold">{selectedFriend.name}</h2>
+
           <div className="flex justify-center gap-2">
             <span
               className={`text-[10px] sm:text-xs px-3 py-1 rounded-full font-semibold ${
@@ -34,6 +39,7 @@ const FriendDetails = () => {
               {selectedFriend.status}
             </span>
           </div>
+
           <div className="flex justify-center gap-2">
             {selectedFriend.tags?.map((tag, idx) => (
               <span
@@ -50,6 +56,7 @@ const FriendDetails = () => {
           <p className="text-md text-[#64748b] italic">
             Preferred: {selectedFriend.email}
           </p>
+
           <div className="space-y-2 pt-4">
             <button className="w-full bg-gray-100 hover:bg-gray-200 py-2 rounded-lg text-sm cursor-pointer">
               Snooze 2 Weeks
@@ -68,7 +75,9 @@ const FriendDetails = () => {
           {/* TOP STATS */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="bg-white rounded-xl shadow p-5 text-center">
-              <h3 className="text-3xl font-bold text-[#244d3f]">{`${selectedFriend.days_since_contact} ago`}</h3>
+              <h3 className="text-3xl font-bold text-[#244d3f]">
+                {`${selectedFriend.days_since_contact} ago`}
+              </h3>
               <p className="text-sm text-[#64748b]">Days Since Contact</p>
             </div>
 
@@ -81,18 +90,13 @@ const FriendDetails = () => {
 
             <div className="bg-white rounded-xl shadow p-5 text-center">
               <h3 className="text-3xl font-semibold text-[#244d3f]">
-                {/* {new Date().toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                  year: "numeric",
-                })} */}
                 {selectedFriend.next_due_date}
               </h3>
               <p className="text-sm text-[#64748b]">Next Due</p>
             </div>
           </div>
 
-          {/* RELATIONSHIP  */}
+          {/* RELATIONSHIP */}
           <div className="bg-white rounded-xl shadow p-5 flex justify-between items-center">
             <div>
               <h3 className="font-medium text-[#244d3f] text-xl">
@@ -115,17 +119,29 @@ const FriendDetails = () => {
             <h3 className="mb-4 font-medium">Quick Check-In</h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <button className="flex flex-col items-center gap-2 bg-gray-100 hover:bg-gray-200 py-6 rounded-xl cursor-pointer">
+              {/* call button */}
+              <button
+                onClick={() => handleAddTimeLine(selectedFriend, "call")}
+                className="flex flex-col items-center gap-2 bg-gray-100 hover:bg-gray-200 py-6 rounded-xl cursor-pointer"
+              >
                 <FaPhoneAlt />
                 <span className="text-sm">Call</span>
               </button>
 
-              <button className="flex flex-col items-center gap-2 bg-gray-100 hover:bg-gray-200 py-6 rounded-xl cursor-pointer">
+              {/* massage button */}
+              <button
+                onClick={() => handleAddTimeLine(selectedFriend, "message")}
+                className="flex flex-col items-center gap-2 bg-gray-100 hover:bg-gray-200 py-6 rounded-xl cursor-pointer"
+              >
                 <HiOutlineChatBubbleLeft />
                 <span className="text-sm">Text</span>
               </button>
 
-              <button className="flex flex-col items-center gap-2 bg-gray-100 hover:bg-gray-200 py-6 rounded-xl cursor-pointer">
+              {/* Video Call button */}
+              <button
+                onClick={() => handleAddTimeLine(selectedFriend, "video")}
+                className="flex flex-col items-center gap-2 bg-gray-100 hover:bg-gray-200 py-6 rounded-xl cursor-pointer"
+              >
                 <FaVideo />
                 <span className="text-sm">Video</span>
               </button>
