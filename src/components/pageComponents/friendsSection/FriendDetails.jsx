@@ -121,7 +121,7 @@ const FriendDetails = () => {
               {/* call button */}
               <button
                 onClick={() => handleAddTimeLine(selectedFriend, "call")}
-                className="flex flex-col items-center gap-2 bg-gray-100 hover:bg-gray-200 py-6 rounded-xl cursor-pointer"
+                className="flex flex-col items-center gap-2 bg-gray-200 hover:bg-gray-300 py-6 rounded-xl cursor-pointer"
               >
                 <FaPhoneAlt />
                 <span className="text-sm">Call</span>
@@ -130,7 +130,7 @@ const FriendDetails = () => {
               {/* massage button */}
               <button
                 onClick={() => handleAddTimeLine(selectedFriend, "message")}
-                className="flex flex-col items-center gap-2 bg-gray-100 hover:bg-gray-200 py-6 rounded-xl cursor-pointer"
+                className="flex flex-col items-center gap-2 bg-gray-200 hover:bg-gray-300 py-6 rounded-xl cursor-pointer"
               >
                 <HiOutlineChatBubbleLeft />
                 <span className="text-sm">Text</span>
@@ -139,7 +139,7 @@ const FriendDetails = () => {
               {/* Video Call button */}
               <button
                 onClick={() => handleAddTimeLine(selectedFriend, "video")}
-                className="flex flex-col items-center gap-2 bg-gray-100 hover:bg-gray-200 py-6 rounded-xl cursor-pointer"
+                className="flex flex-col items-center gap-2 bg-gray-200 hover:bg-gray-300 py-6 rounded-xl cursor-pointer"
               >
                 <FaVideo />
                 <span className="text-sm">Video</span>
