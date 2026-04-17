@@ -22,7 +22,6 @@ const StatsPage = () => {
     },
     { video: 0, message: 0, call: 0 },
   );
-  console.log(stats);
 
   const data = [
     { name: "Video", value: stats.video, fill: "#37a163" },
